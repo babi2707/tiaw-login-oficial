@@ -124,7 +124,6 @@ onload = () => {
       };
 
       userList = JSON.parse(localStorage.getItem("logados"));
-      console.log(userList);
 
       userList.forEach((item) => {
         if (username.value == item.usuar && userSenha.value == item.senha) {
