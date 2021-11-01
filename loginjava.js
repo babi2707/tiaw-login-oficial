@@ -140,16 +140,39 @@ onload = () => {
 
       console.log(userValid);
 
+      //----- usuario e senha corretos -----
       if (
         username.value == userValid.validuser &&
         userSenha.value == userValid.validsenha
       ) {
+        //----- alert logado e mudar para pagina para sair (deslogar) -----
         msgCerto();
-      } else {
+        location.href = 'sair.html';
+        
+        //----- gerar um token para identificar o usuário -----
+        let token = Math.random().toString(16).substr(2);
+        localStorage.setItem("token", token);
+        console.log("token:", token);
+      } 
+      //----- usuario e senha incorretos -----
+      else {
         msgErro();
         user.style.border = "thin red solid";
         password.style.border = "thin red solid";
       }
+    }
+  };
+
+  sairlogin.onclick = () => {
+      sair();
+
+
+
+    function sair()
+    {
+        localStorage.removeItem(token);
+        location.href = 'login.html';
+
     }
   };
 };
