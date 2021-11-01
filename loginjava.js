@@ -62,23 +62,28 @@ onload = () => {
   user.oninput = validButton;
   password.oninput = validButton;
 
-
   //-------------- quando o botão de login for pressionado --------------
   login.onsubmit = (evento) => {
     evento.preventDefault();
     var struser = [
       {
-        user: user.value,
-        senha: password.value,
+        usuar: "babi752",
+        senha: "1234",
+        categoria: 0,
+        nomeInst: "Instituição 1",
+        email: "inst1@gmail.com",
       },
 
       {
-        user: 'barbara',
-        senha: 'barbarasenha',
+        usuar: "barbara",
+        senha: "5678",
+        categoria: 1,
+        nomeInst: "Instituição 2",
+        email: "inst2@gmail.com",
       },
-    ]
+    ];
 
-    localStorage.setItem('logados', JSON.stringify(struser));
+    localStorage.setItem("logados", JSON.stringify(struser));
     checkuser();
 
     user.value = "";
@@ -87,24 +92,57 @@ onload = () => {
     /*-------------- confere se os dados do login estão cadastrados 
   (só funcionará na sprint 4, quando todos os artefatos se juntarem) --------------*/
 
-  function checkuser() {
-    //alert(`Usuário ${user.value} logado!`);
+    function checkuser() {
+      let username = document.querySelector("#user");
+      let userLabel = document.querySelector("#labelUser");
 
-    let userList = []
+      let userSenha = document.querySelector("#password");
+      let senhaLabel = document.querySelector("#labelSenha");
 
-    let userValid = {
-        usuario: '',
-        senha: '', 
-        email: ''
-    };
+      function msgCerto() {
+        alert(`Usuário ${user.value} logado!`);
+      }
+      function msgErro() {
+        alert(`Usuário ou senha inválidos!`);
+      }
 
-    userList = localStorage.getItem('logados');    
-    console.log(userList);
+      let userList = [];
 
-  }
-  
+      let userValid = {
+        validuser: "",
+        validsenha: "",
+        validcategoria: "",
+        validnomeInst: "",
+        validemail: "",
+      };
 
+      userList = JSON.parse(localStorage.getItem("logados"));
+      console.log(userList);
+
+      userList.forEach((item) => {
+        if (username.value == item.usuar && userSenha.value == item.senha) {
+          userValid = {
+            validuser: item.usuar,
+            validsenha: item.senha,
+            validcategoria: item.categoria,
+            validnomeInst: item.nomeInst,
+            validemail: item.email,
+          };
+        }
+      });
+
+      console.log(userValid);
+
+      if (
+        username.value == userValid.validuser &&
+        userSenha.value == userValid.validsenha
+      ) {
+        msgCerto();
+      } else {
+        msgErro();
+        user.style.border = "thin red solid";
+        password.style.border = "thin red solid";
+      }
+    }
   };
-
-
 };
