@@ -150,9 +150,8 @@ onload = () => {
         location.href = 'sair.html';
         
         //----- gerar um token para identificar o usuário -----
-        let token = Math.random().toString(16).substr(2);
-        localStorage.setItem("token", token);
-        console.log("token:", token);
+        var token = Math.random().toString(16).substr(2);
+        localStorage.setItem("token: ",token);
       } 
       //----- usuario e senha incorretos -----
       else {
@@ -161,18 +160,9 @@ onload = () => {
         password.style.border = "thin red solid";
       }
     }
+
   };
 
-  sairlogin.onclick = () => {
-      sair();
-
-
-
-    function sair()
-    {
-        localStorage.removeItem(token);
-        location.href = 'login.html';
-
-    }
-  };
 };
+
+
