@@ -65,6 +65,10 @@ onload = () => {
   //-------------- quando o botão de login for pressionado --------------
   login.onsubmit = (evento) => {
     evento.preventDefault();
+
+    /*------- lista de instituições cadastradas -------
+    (obs: lista apenas para teste, lista oficial será na 
+    sprint 4, quando tiver os dados de cadastro)*/
     var struser = [
       {
         usuar: "babi752",
@@ -72,6 +76,7 @@ onload = () => {
         categoria: 0,
         nomeInst: "Instituição 1",
         email: "inst1@gmail.com",
+        telefone: "31975258315"
       },
 
       {
@@ -80,6 +85,7 @@ onload = () => {
         categoria: 1,
         nomeInst: "Instituição 2",
         email: "inst2@gmail.com",
+        telefone: "31974842512"
       },
     ];
 
@@ -114,6 +120,7 @@ onload = () => {
         validcategoria: "",
         validnomeInst: "",
         validemail: "",
+        validtelefone: "",
       };
 
       userList = JSON.parse(localStorage.getItem("logados"));
@@ -127,6 +134,7 @@ onload = () => {
             validcategoria: item.categoria,
             validnomeInst: item.nomeInst,
             validemail: item.email,
+            validtelefone: item.telefone,
           };
         }
       });
