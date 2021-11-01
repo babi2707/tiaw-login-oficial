@@ -55,7 +55,7 @@ onload = () => {
   //-------------- conferindo se os campos estão preenchido para o botão de login funcionar --------------
   botao.disabled = true;
   let validButton = () => {
-    if (password.value.length != 0 || user.value.length != 0) {
+    if (password.value.length != 0 && user.value.length != 0) {
       botao.disabled = false;
     }
   };
