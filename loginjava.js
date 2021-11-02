@@ -89,7 +89,7 @@ onload = () => {
       },
     ];
 
-    localStorage.setItem("logados", JSON.stringify(struser));
+    localStorage.setItem("cadastrados", JSON.stringify(struser));
     checkuser();
 
     user.value = "";
@@ -116,7 +116,7 @@ onload = () => {
         validtelefone: "",
       };
 
-      userList = JSON.parse(localStorage.getItem("logados"));
+      userList = JSON.parse(localStorage.getItem("cadastrados"));
 
       userList.forEach((item) => {
         if ((username.value == item.usuar || username.value == item.email) && userSenha.value == item.senha) {
