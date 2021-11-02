@@ -5,7 +5,7 @@ onload = () => {
     console.log("change", user.value);
   };
   user.onfocus = () => {
-    instruction1.innerHTML = "Digite seu usuário";
+    instruction1.innerHTML = "Digite seu usuário ou email";
     instruction1.style.color = "#999";
   };
   user.onblur = () => {
@@ -75,7 +75,7 @@ onload = () => {
         senha: "1234",
         categoria: 0,
         nomeInst: "Instituição 1",
-        email: "inst1@gmail.com",
+        email: "barbaraluar@gmail.com",
         telefone: "31975258315"
       },
 
@@ -84,7 +84,7 @@ onload = () => {
         senha: "5678",
         categoria: 1,
         nomeInst: "Instituição 2",
-        email: "inst2@gmail.com",
+        email: "barbaraluar@gmail.com",
         telefone: "31974842512"
       },
     ];
@@ -105,13 +105,6 @@ onload = () => {
       let userSenha = document.querySelector("#password");
       let senhaLabel = document.querySelector("#labelSenha");
 
-      function msgCerto() {
-        alert(`Usuário ${user.value} logado!`);
-      }
-      function msgErro() {
-        alert(`Usuário ou senha inválidos!`);
-      }
-
       let userList = [];
 
       let userValid = {
@@ -126,7 +119,7 @@ onload = () => {
       userList = JSON.parse(localStorage.getItem("logados"));
 
       userList.forEach((item) => {
-        if (username.value == item.usuar && userSenha.value == item.senha) {
+        if ((username.value == item.usuar || username.value == item.email) && userSenha.value == item.senha) {
           userValid = {
             validuser: item.usuar,
             validsenha: item.senha,
@@ -140,9 +133,17 @@ onload = () => {
 
       console.log(userValid);
 
+      function msgCerto() {
+        alert(`Usuário ${userValid.validuser} logado!`);
+      }
+      function msgErro() {
+        alert(`Usuário ou senha inválidos!`);
+      }
+
       //----- usuario e senha corretos -----
+
       if (
-        username.value == userValid.validuser &&
+        (username.value == userValid.validuser || username.value == userValid.validemail) &&
         userSenha.value == userValid.validsenha
       ) {
         //----- alert logado e mudar para pagina para sair (deslogar) -----
