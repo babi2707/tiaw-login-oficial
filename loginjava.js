@@ -76,7 +76,7 @@ onload = () => {
         categoria: 0,
         nomeInst: "Instituição 1",
         email: "barbaraluar@gmail.com",
-        telefone: "31975258315"
+        telefone: "31975258315",
       },
 
       {
@@ -85,7 +85,7 @@ onload = () => {
         categoria: 1,
         nomeInst: "Instituição 2",
         email: "barbaraluar@gmail.com",
-        telefone: "31974842512"
+        telefone: "31974842512",
       },
     ];
 
@@ -119,7 +119,10 @@ onload = () => {
       userList = JSON.parse(localStorage.getItem("cadastrados"));
 
       userList.forEach((item) => {
-        if ((username.value == item.usuar || username.value == item.email) && userSenha.value == item.senha) {
+        if (
+          (username.value == item.usuar || username.value == item.email) &&
+          userSenha.value == item.senha
+        ) {
           userValid = {
             validuser: item.usuar,
             validsenha: item.senha,
@@ -133,53 +136,36 @@ onload = () => {
 
       console.log(userValid);
 
-
-      //--- 3 possíveis cenários ---
       function msgCerto() {
         alert(`Usuário ${userValid.validuser} logado!`);
       }
-      function msgErroUsu() {
-        alert(`Usuário inválido!`);
-      }
-      function msgErroSenha() {
-        alert(`Senha inválida!`);
+      function msgErro() {
+        alert(`Usuário e/ou senha inválidos!`);
       }
 
       //----- usuario e senha corretos -----
 
-      if ((username.value == userValid.validuser || username.value == userValid.validemail) &&
-        userSenha.value == userValid.validsenha) 
-      {
+      if (
+        (username.value == userValid.validuser ||
+          username.value == userValid.validemail) &&
+        userSenha.value == userValid.validsenha
+      ) {
         //----- alert logado e mudar para pagina para sair (deslogar) -----
         msgCerto();
-        location.href = 'sair.html';
-        
+        location.href = "sair.html";
+
         //----- gerar um token para identificar o usuário -----
         var token = Math.random().toString(16).substr(2);
-        localStorage.setItem("token: ",token);
-      } 
-
-      else{
-        //----- usuario incorreto -----
-        if ((username.value != userValid.validuser || username.value != userValid.validemail)) {
-          msgErroUsu();
-          user.style.border = "thin red solid";
-        }
-
-        //----- senha incorreta -----
-        else if (userSenha.value != userValid.validsenha) {
-        msgErroSenha();
-        password.style.border = "thin red solid";
+        localStorage.setItem("token: ", token);
       }
 
+      //----- usuario e senha incorretos -----
+      else 
+      {
+        msgErro();
+        user.style.border = "thin red solid";
+        password.style.border = "thin red solid";
+      }
     }
-  }
-
-      
-
-
   };
-
 };
-
-
