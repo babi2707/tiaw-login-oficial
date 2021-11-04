@@ -133,19 +133,23 @@ onload = () => {
 
       console.log(userValid);
 
+
+      //--- 3 possíveis cenários ---
       function msgCerto() {
         alert(`Usuário ${userValid.validuser} logado!`);
       }
-      function msgErro() {
-        alert(`Usuário ou senha inválidos!`);
+      function msgErroUsu() {
+        alert(`Usuário inválido!`);
+      }
+      function msgErroSenha() {
+        alert(`Senha inválida!`);
       }
 
       //----- usuario e senha corretos -----
 
-      if (
-        (username.value == userValid.validuser || username.value == userValid.validemail) &&
-        userSenha.value == userValid.validsenha
-      ) {
+      if ((username.value == userValid.validuser || username.value == userValid.validemail) &&
+        userSenha.value == userValid.validsenha) 
+      {
         //----- alert logado e mudar para pagina para sair (deslogar) -----
         msgCerto();
         location.href = 'sair.html';
@@ -154,13 +158,25 @@ onload = () => {
         var token = Math.random().toString(16).substr(2);
         localStorage.setItem("token: ",token);
       } 
-      //----- usuario e senha incorretos -----
-      else {
-        msgErro();
-        user.style.border = "thin red solid";
+
+      else{
+        //----- usuario incorreto -----
+        if ((username.value != userValid.validuser || username.value != userValid.validemail)) {
+          msgErroUsu();
+          user.style.border = "thin red solid";
+        }
+
+        //----- senha incorreta -----
+        else if (userSenha.value != userValid.validsenha) {
+        msgErroSenha();
         password.style.border = "thin red solid";
       }
+
     }
+  }
+
+      
+
 
   };
 
